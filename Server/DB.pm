@@ -1,9 +1,9 @@
 sub Connect(){
         use DBI;
-        use strict;
-        my $dbname = "nombre de la base de datos";
-        my $user = "";
-        my $pass = "";
+        #use strict;
+        my $dbname = "bd_borrar";
+        my $user = "user_bd_borrar";
+        my $pass = "123";
         our $dbh = DBI->connect("dbi:mysql:dbname=$dbname", "$user", "$pass");
 }
 
@@ -15,9 +15,9 @@ sub Query($){
 
         my $lenth=0;
         $sqlXML = XMLin('<xml/>',ForceArray=>1);
-        open(my $fh,'>>', '/var/log/registro.log');   #inicio de registro de actividad-------->>>>>>><<<<<<<
-        print $fh  'DB.pm: '.$SQLsentence."\n";
-        close $fh;      #fin de registro de actividad
+        #open(my $fh,'>>', '/var/log/registro.log');   #inicio de registro de actividad-------->>>>>>><<<<<<<
+        #print $fh  'DB.pm: '.$SQLsentence."\n";
+        #close $fh;      #fin de registro de actividad
         my $sth = $dbh->prepare($SQLsentence);
         $sth->execute();
 
@@ -44,9 +44,9 @@ sub Do($){
         use XML::Simple;
         use Data::Dump qw(dump);
         my ($SQLsentence) = (@_);
-        open(my $fh,'>>', '/var/log/registro.log');   #registro de actividad-------->>>>>>><<<<<<<
-        print $fh  'DB.pm: '.$SQLsentence."\n";
-        close $fh;      #fin de registro de actividad
+        #open(my $fh,'>>', '/var/log/registro.log');   #registro de actividad-------->>>>>>><<<<<<<
+        #print $fh  'DB.pm: '.$SQLsentence."\n";
+        #close $fh;      #fin de registro de actividad
         $row = $dbh->do($SQLsentence);
         $sqlXML = XMLin('<xml/>',ForceArray=>1);
         $sqlXML->{do}[0] = $row;
