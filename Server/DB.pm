@@ -1,3 +1,4 @@
+package DB;
 sub Connect(){
         use DBI;
         #use strict;
